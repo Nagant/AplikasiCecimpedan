@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Cecimpedan</string>
+
+
+
+    <!-- Navigation Bottom -->
+    <string name="navigationbottom_permainan">Permainan</string>
+    <string name="navigationbottom_dashboard">Dashboard</string>
+    <string name="navigationbottom_tentang">Tentang</string>
+
+    <!-- Action Bar -->
+    <string name="actionbar_pengaturan">Pengaturan</string>
+
+    <!-- Layout Bermain -->
+    <string name="bermain_tahukah_anda">Tahukah Anda</string>
+    <string name="bermain_cara_bermain">Cara Bermain</string>
+
+    <!-- Layout Hasil -->
+    <string name="hasil_hasil_permainan">Hasil Permainan</string>
+
+    <!-- Layout Permainan -->
+    <string name="permainan_cek_jawaban">Cek Jawaban</string>
+    <string name="permainan_acak">Acak</string>
+    <string name="permainan_bersihkan">Bersihkan</string>
+
+    <!-- Layout Tentang -->
+    <string name="title_pengmb">Dewa Putu Yudhi Ardiana, S.Kom., M.Pd.</string>
+    <string name="title_email_pengmbg">loremipsum@rocks.com</string>
+    <string name="title_pengembang">Pengembang</string>
+    <string name="title_email">Email</string>
+    <string name="title_ttng_pengembang">Tentang Pengembang</string>
+    <string name="title_copyright">STIKI Indonesia 2019</string>
+    <string name="title_terima_kasih_kepada">Terima Kasih Kepada</string>
+    <string name="title_isi_terimakasih">STIKI Indonesia</string>
+    <string name="todo">TODO</string>
+    <string name="title_isitentang">Aplikasi ini merupakan, aplikasi untuk mengasah kemampuan dalam menyusun huruf</string>
+    <string name="item_hasil_jawaban">Jawaban :</string>
+    <string name="item_hasil_jawaban_kamu">Jawaban Kamu :</string>
+    <string name="modal_jawaban_salah">Jawaban Salah</string>
+    <string name="modal_jawaban_benar">Jawaban Benar</string>
+    <string name="modal_skor">Skor</string>
+</resources>

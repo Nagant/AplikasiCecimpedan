@@ -18,6 +18,6 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.dwputuyudhiardiana.cecimpedan.fragment.DashboardFragment"
         android:label="Dashboard"
-        tools:layout="@layout/fragment_tentang" />
+        tools:layout="@layout/fragment_dashboard" />
 
 </navigation>

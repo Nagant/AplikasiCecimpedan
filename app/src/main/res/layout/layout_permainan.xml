@@ -12,7 +12,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_banner" />
+        app:srcCompat="@drawable/img_banner"
+        android:contentDescription="@string/todo" />
 
     <RelativeLayout
         android:id="@+id/tombol_mulai"
@@ -33,7 +34,8 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/drw_bulat_menu_kuis"
-            android:elevation="1dp" />
+            android:elevation="1dp"
+            android:contentDescription="@string/todo"/>
 
         <ImageView
             android:id="@+id/materi_ikon"
@@ -42,7 +44,8 @@
             android:layout_centerInParent="true"
             android:elevation="1dp"
             android:tint="@android:color/white"
-            app:srcCompat="@drawable/ic_bermain" />
+            app:srcCompat="@drawable/ic_bermain"
+            android:contentDescription="@string/todo"/>
     </RelativeLayout>
 
     <Button
@@ -83,7 +86,8 @@
             android:layout_height="64dp"
             android:layout_gravity="end"
             android:scaleType="fitEnd"
-            app:srcCompat="@drawable/img_blob" />
+            app:srcCompat="@drawable/img_blob"
+            android:contentDescription="@string/todo"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -92,7 +96,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="3dp"
             android:tint="@android:color/white"
-            app:srcCompat="@drawable/ic_tahukan" />
+            app:srcCompat="@drawable/ic_tahukan"
+            android:contentDescription="@string/todo"/>
 
 
         <LinearLayout

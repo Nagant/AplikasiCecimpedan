@@ -15,7 +15,7 @@ public class proto_DBHelper_Tabel_Hasil_User {
     public static final String TABEL_HASIL_USER                 = "tb_hasil_user";
     public static final String ID_HASIL_USER                    = "id_hasiluser";
     public static final String TANGGAL_BERMAIN_HASIL_USER       = "tanggal_bermain_hasiluser";
-    public static final String NAMA_JENIS_PERMAINAN_HASIL_USER  = "nama_jenispermainan_hasiluser";
+    public static final String NAMA_PERMAINAN_HASIL_USER  = "nama_pemain_hasiluser";
     public static final String NILAI_SKOR_HASIL_USER            = "nilai_hasiluser";
     public static final String TOTAL_JAWABAN_BENAR_HASIL_USER   = "totaljawaban_hasiluser";
     public static final String DETAIL_JAWABAN_HASIL_USER        = "detailjawaban_hasiluser";
@@ -25,7 +25,7 @@ public class proto_DBHelper_Tabel_Hasil_User {
         SQLiteDatabase db = dBHelper.getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put(TANGGAL_BERMAIN_HASIL_USER, hasiluser.gettanggalbermainUser());
-        values.put(NAMA_JENIS_PERMAINAN_HASIL_USER, hasiluser.getnamajenispermainanUser());
+        values.put(NAMA_PERMAINAN_HASIL_USER, hasiluser.getnamapemainanUser());
         values.put(NILAI_SKOR_HASIL_USER, hasiluser.getnilaiUserUser());
         values.put(TOTAL_JAWABAN_BENAR_HASIL_USER, hasiluser.gettotaljawabanbenarUser());
         values.put(DETAIL_JAWABAN_HASIL_USER, hasiluser.getdetailjawabanUser());

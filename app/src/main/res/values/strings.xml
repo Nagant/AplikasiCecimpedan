@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Cecimpedan</string>
 
-
+    <!-- Bawaan -->
+    <string name="todo">TODO</string>
 
     <!-- Navigation Bottom -->
     <string name="navigationbottom_permainan">Permainan</string>
@@ -32,11 +33,39 @@
     <string name="title_copyright">STIKI Indonesia 2019</string>
     <string name="title_terima_kasih_kepada">Terima Kasih Kepada</string>
     <string name="title_isi_terimakasih">STIKI Indonesia</string>
-    <string name="todo">TODO</string>
     <string name="title_isitentang">Aplikasi ini merupakan, aplikasi untuk mengasah kemampuan dalam menyusun huruf</string>
+
+    <!-- Tombol Modal -->
+    <string name="tombol_modal_lanjut">Lanjut</string>
+    <string name="tombol_modal_ulang">Ulang</string>
+    <string name="tombol_modal_baik">Baik</string>
+
+    <!-- Modal Permainan -->
+    <string name="modal_jawaban_selesai">Selesai</string>
+    <string name="modal_jawaban_kosong">Kosong.?</string>
+    <string name="modal_jawaban_waktuhabis">Waktu Habis</string>
+    <string name="modal_jawaban_benar_deskripsi">Jawaban Benar Lanjut Ke Soal Berikut.</string>
+    <string name="modal_jawaban_salah_deskripsi">Wah.. Sepertinya Jawaban Kamu Salah, Ulangi?</string>
+    <string name="modal_jawaban_waktuhabis_deskripsi">Wah.. Sepertinya Waktu Untuk Menjawab Habis, Lanjut Ke Soal Berikut</string>
+    <string name="modal_jawaban_kosong_deskripsi">Sepertinya Kamu Belum Memasukan Jawaban, Masukan Jawaban Kamu Ya!</string>
+    <string name="modal_jawaban_selesai_deskripsi">"Wah.. Sepertinya Kamu Sudah Menjawab Semua Pertanyaan"</string>
+
+    <!-- Modal Hasil Permainan -->
     <string name="item_hasil_jawaban">Jawaban :</string>
     <string name="item_hasil_jawaban_kamu">Jawaban Kamu :</string>
     <string name="modal_jawaban_salah">Jawaban Salah</string>
     <string name="modal_jawaban_benar">Jawaban Benar</string>
     <string name="modal_skor">Skor</string>
+
+    <!-- Modal Hasil Permainan Status -->
+    <string name="modal_status_gagal">Coba Lagi Ya</string>
+    <string name="modal_status_nilai_rendah">Lumayan</string>
+    <string name="modal_status_nilai_menengah">Bagus</string>
+    <string name="modal_status_nilai_tinggi">Luar Biasa</string>
+    <string name="layout_tentang_deskripsi">Deskripsi</string>
+    <string name="layout_login_login">Login</string>
+    <string name="layout_login_keluar">Keluar</string>
+    <string name="layout_login_deskripsi">Belajar Cecimpedan Mudah Dan Mengasyikan.</string>
+
+
 </resources>

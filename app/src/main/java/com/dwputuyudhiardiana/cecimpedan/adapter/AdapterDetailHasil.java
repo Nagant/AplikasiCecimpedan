@@ -57,7 +57,7 @@ public class AdapterDetailHasil extends RecyclerView.Adapter<AdapterDetailHasil.
                 ImageViewCompat.setImageTintList( holder.icon_detail_hasil, ColorStateList.valueOf(ContextCompat.getColor(context, R.color.warnaMerah)));
                 holder.layout_jawaban_pemain.setVisibility(View.VISIBLE);
                 if(ListHasil.getjawabanpemainDetail().equals("")){
-                    holder.jawaban_detail_hasil_pemain.setText("Jawaban Kosong");
+                    holder.jawaban_detail_hasil_pemain.setText("Tidak Terisi");
                 }
             }
         holder.icon_detail_hasil.setImageResource(background);

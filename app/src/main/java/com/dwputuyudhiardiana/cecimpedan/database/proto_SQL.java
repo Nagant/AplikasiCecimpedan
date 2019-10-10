@@ -33,7 +33,7 @@ public class proto_SQL extends SQLiteOpenHelper {
 
         //BUAT TABEL SIMPAN JAWABAN PENGGUNA
         String CREATE_MATERI_HASIL_JAWABAN_USER = "CREATE TABLE " + proto_DBHelper_Tabel_Hasil_User.TABEL_HASIL_USER + "("
-                + proto_DBHelper_Tabel_Hasil_User.ID_HASIL_USER + " INTEGER PRIMARY KEY AUTOINCREMENT," + proto_DBHelper_Tabel_Hasil_User.TANGGAL_BERMAIN_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.NAMA_JENIS_PERMAINAN_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.NILAI_SKOR_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.TOTAL_JAWABAN_BENAR_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.DETAIL_JAWABAN_HASIL_USER + " TEXT" + ")";
+                + proto_DBHelper_Tabel_Hasil_User.ID_HASIL_USER + " INTEGER PRIMARY KEY AUTOINCREMENT," + proto_DBHelper_Tabel_Hasil_User.TANGGAL_BERMAIN_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.NAMA_PERMAINAN_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.NILAI_SKOR_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.TOTAL_JAWABAN_BENAR_HASIL_USER + " TEXT," + proto_DBHelper_Tabel_Hasil_User.DETAIL_JAWABAN_HASIL_USER + " TEXT" + ")";
         db.execSQL(CREATE_MATERI_HASIL_JAWABAN_USER);
 
 

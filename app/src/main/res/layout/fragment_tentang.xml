@@ -20,7 +20,8 @@
         app:layout_constraintEnd_toEndOf="@id/tentang_background"
         app:layout_constraintStart_toStartOf="@id/tentang_background"
         app:layout_constraintTop_toBottomOf="@id/tentang_background"
-        app:srcCompat="@drawable/img_banner" />
+        app:srcCompat="@drawable/img_banner"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/teks_copyright"
@@ -65,7 +66,8 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="3dp"
-                    app:srcCompat="@drawable/ic_deskripsi" />
+                    app:srcCompat="@drawable/ic_deskripsi"
+                    android:contentDescription="@string/todo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,7 +83,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="5dp"
-                        android:text="Deskripsi"
+                        android:text="@string/layout_tentang_deskripsi"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -108,7 +110,7 @@
                     android:layout_width="94dp"
                     android:layout_height="64dp"
                     android:layout_gravity="end"
-                    android:contentDescription="TODO"
+                    android:contentDescription="@string/todo"
                     android:scaleType="fitEnd"
                     android:src="@drawable/img_blob" />
 
@@ -119,7 +121,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="3dp"
                     android:tint="@color/warnaPutih"
-                    app:srcCompat="@drawable/ic_tentang_icon_pengembang" />
+                    app:srcCompat="@drawable/ic_tentang_icon_pengembang"
+                    android:contentDescription="@string/todo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -152,12 +155,13 @@
                         <ImageView
                             android:layout_width="95dp"
                             android:layout_height="match_parent"
-                            android:layout_gravity="left"
+                            android:layout_gravity="start"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:tint="@color/colorAccent"
-                            app:srcCompat="@drawable/ic_tentang_icon_pengembang" />
+                            app:srcCompat="@drawable/ic_tentang_icon_pengembang"
+                            android:contentDescription="@string/todo" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -170,7 +174,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginRight="10dp"
                                 android:text="@string/title_pengembang"
                                 android:textColor="@color/colorAccent"
                                 android:textStyle="bold" />
@@ -179,7 +182,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginRight="10dp"
                                 android:text="@string/title_pengmb" />
                         </LinearLayout>
 
@@ -197,12 +199,13 @@
                         <ImageView
                             android:layout_width="38dp"
                             android:layout_height="match_parent"
-                            android:layout_gravity="left"
+                            android:layout_gravity="start"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="0"
                             android:tint="@color/colorAccent"
-                            app:srcCompat="@drawable/ic_email" />
+                            app:srcCompat="@drawable/ic_email"
+                            android:contentDescription="@string/todo" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -214,7 +217,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginRight="10dp"
                                 android:text="@string/title_email"
                                 android:textColor="@color/colorAccent"
                                 android:textStyle="bold" />
@@ -223,7 +225,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginRight="10dp"
                                 android:text="@string/title_email_pengmbg" />
                         </LinearLayout>
 
@@ -252,7 +253,8 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="3dp"
-                    app:srcCompat="@drawable/ic_deskripsi" />
+                    app:srcCompat="@drawable/ic_deskripsi"
+                    android:contentDescription="@string/todo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

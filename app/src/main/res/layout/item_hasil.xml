@@ -28,7 +28,8 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/ic_bulat"
-                    android:backgroundTint="@color/colorPrimary" />
+                    android:backgroundTint="@color/colorPrimary"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:id="@+id/nomor_detail_hasil"
@@ -110,7 +111,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:contentDescription="@string/todo" />
 
                 </LinearLayout>
 

@@ -2,17 +2,17 @@ package com.dwputuyudhiardiana.cecimpedan.database.model;
 
 public class model_tb_jawaban_user {
 
-    private String tanggalbermainUser,namajenispermainanUser,nilaiUser,totaljawabanbenarUser,detailjawabanUser;
+    private String tanggalbermainUser,namapemainanUser,nilaiUser,totaljawabanbenarUser,detailjawabanUser;
 
     public model_tb_jawaban_user()
     {
 
     }
 
-    public model_tb_jawaban_user(String tanggalbermainUser, String namajenispermainanUser, String nilaiUser, String totaljawabanbenarUser, String detailjawabanUser)
+    public model_tb_jawaban_user(String tanggalbermainUser, String namapemainanUser, String nilaiUser, String totaljawabanbenarUser, String detailjawabanUser)
     {
         this.tanggalbermainUser = tanggalbermainUser;
-        this.namajenispermainanUser = namajenispermainanUser;
+        this.namapemainanUser = namapemainanUser;
         this.nilaiUser = nilaiUser;
         this.totaljawabanbenarUser = totaljawabanbenarUser;
         this.detailjawabanUser = detailjawabanUser;
@@ -42,8 +42,8 @@ public class model_tb_jawaban_user {
         return tanggalbermainUser;
     }
 
-    public String getnamajenispermainanUser() {
-        return namajenispermainanUser;
+    public String getnamapemainanUser() {
+        return namapemainanUser;
     }
 
     public String getnilaiUserUser() {

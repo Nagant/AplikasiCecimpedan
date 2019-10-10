@@ -28,6 +28,8 @@ import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_cecimpedan;
 import com.dwputuyudhiardiana.cecimpedan.database.proto_DBHelper_Tabel_Hasil_User;
 import com.dwputuyudhiardiana.cecimpedan.database.proto_DBHelper_Tabel_Cecimpedan;
 import com.dwputuyudhiardiana.cecimpedan.prototipe.proto_animation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +63,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
     private final proto_DBHelper_Tabel_Cecimpedan susun_huruf = new proto_DBHelper_Tabel_Cecimpedan();
     JSONObject hasil_jawaban;
     JSONArray hasil_soal_array,hasil_jawaban_array,hasil_jawaban_pemain_array;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_silang);
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
         builderDialog              = new AlertDialog.Builder(this,R.style.KotakDialogRounded);
         susun_huruf_level          = findViewById(R.id.susun_huruf_level);
         susun_huruf_skor           = findViewById(R.id.susun_huruf_skor);
@@ -212,35 +215,35 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         String teks_statusjawaban;
         switch (statusJawaban) {
             case "benar":
-                teks_statusjawaban = "Jawaban Benar";
-                teks_desstatusjawaban = "Jawaban Benar Lanjut Ke Soal Berikut.";
-                teks_tombol_lanjut = "Lanjut";
+                teks_statusjawaban = getResources().getString(R.string.modal_jawaban_benar);;
+                teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_benar_deskripsi);
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_lanjut);
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabanbenar);
                 jawabanPengguna("Benar");
                 break;
             case "salah":
-                teks_statusjawaban = "Maaf, Jawaban Salah";
-                teks_desstatusjawaban = "Wah.. Sepertinya Jawaban Kamu Salah, Ulangi?";
-                teks_tombol_lanjut = "Ulangi";
+                teks_statusjawaban = getResources().getString(R.string.modal_jawaban_salah);
+                teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_salah_deskripsi);
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_ulang);;
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabansalah);
                 break;
             case "waktuhabis":
-                teks_statusjawaban = "Maaf, Waktu Habis";
-                teks_desstatusjawaban = "Wah.. Sepertinya Waktu Untuk Menjawab Habis, Lanjut Ke Soal Berikut";
-                teks_tombol_lanjut = "Lanjut";
+                teks_statusjawaban = getResources().getString(R.string.modal_jawaban_waktuhabis);
+                teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_waktuhabis_deskripsi);
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_lanjut);;
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabansalah);
                 jawabanPengguna("Salah");
                 break;
             case "selesai":
-                teks_statusjawaban = "Finish";
-                teks_desstatusjawaban = "Wah.. Sepertinya Kamu Sudah Menjawab Semua Pertanyaan";
-                teks_tombol_lanjut = "Baik";
+                teks_statusjawaban = getResources().getString(R.string.modal_jawaban_selesai);
+                teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_selesai_deskripsi);
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_baik);;
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabanbenar);
                 break;
             default:
-                teks_statusjawaban = "Kosong?";
-                teks_desstatusjawaban = "Sepertinya Kamu Belum Memasukan Jawaban, Masukan Jawaban Kamu Ya!";
-                teks_tombol_lanjut = "Baik";
+                teks_statusjawaban = getResources().getString(R.string.modal_jawaban_kosong);
+                teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_kosong_deskripsi);
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_baik);;
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabankosong);
                 break;
         }
@@ -293,6 +296,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
     private void hasil() {
         builderDialog.setCancelable(false);
         View modalHasil = LayoutInflater.from(this).inflate(R.layout.modal_hasil_permainan, null);
+        String status_nilai = null;
         Button btn_detail_hasil = modalHasil.findViewById(R.id.btn_detail_hasil);
         Button btn_kembali_hasil = modalHasil.findViewById(R.id.btn_kembali_hasil);
         TextView skor_hasil = modalHasil.findViewById(R.id.skor_hasil);
@@ -314,23 +318,24 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         if(totalskor>=0 && totalskor <= 10){
             gagal_hasil.setVisibility(View.VISIBLE);
             bintang_hasil.setVisibility(View.GONE);
-            status_hasil.setText("Belajar Lagi Ya :D");
+            status_nilai = getResources().getString(R.string.modal_status_gagal);
         }else if(totalskor>=20 && totalskor <= 30){
             gagal_hasil.setVisibility(View.GONE);
             bintang_pertama_hasil.playAnimation();
-            status_hasil.setText("Lumayan");
+           status_nilai = getResources().getString(R.string.modal_status_nilai_rendah);
         }else if(totalskor>=40 && totalskor <= 80){
             gagal_hasil.setVisibility(View.GONE);
             bintang_pertama_hasil.playAnimation();
             bintang_kedua_hasil.playAnimation();
-            status_hasil.setText("Bagus");
+           status_nilai = getResources().getString(R.string.modal_status_nilai_menengah);
         }else if(totalskor>=90 && totalskor <= 100){
             gagal_hasil.setVisibility(View.GONE);
             bintang_pertama_hasil.playAnimation();
             bintang_kedua_hasil.playAnimation();
             bintang_ketiga_hasil.playAnimation();
-            status_hasil.setText("Luar Biasa");
+           status_nilai = getResources().getString(R.string.modal_status_nilai_tinggi);
         }
+        status_hasil.setText(status_nilai);
 
         builderDialog.setView(modalHasil);
         btn_detail_hasil.setOnClickListener(new View.OnClickListener() {
@@ -355,7 +360,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         Date now = new Date();
         SimpleDateFormat dapatkantgl = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String arrayList = hasil_jawaban.toString();
-        DBHelper_HASILUSER.tambahHasilUser(getApplicationContext(),new model_tb_jawaban_user(dapatkantgl.format(now),"Susun Huruf",String.valueOf(totalskor),String.valueOf(totaljawabanbenar),arrayList));
+        DBHelper_HASILUSER.tambahHasilUser(getApplicationContext(),new model_tb_jawaban_user(dapatkantgl.format(now), user.getDisplayName(),String.valueOf(totalskor),String.valueOf(totaljawabanbenar),arrayList));
     }
 
 

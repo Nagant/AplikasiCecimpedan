@@ -9,6 +9,7 @@
 
 
     <!-- Warna Pendukung -->
+    <color name="warnaTintOranye">#75F48120</color>
     <color name="warnaPutih">#FFFFFF</color>
     <color name="warnaHijau">#59B189</color>
     <color name="warnaMerah">#CD5050</color>

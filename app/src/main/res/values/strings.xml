@@ -7,7 +7,7 @@
     <!-- Navigation Bottom -->
     <string name="navigationbottom_permainan">Permainan</string>
     <string name="navigationbottom_dashboard">Dashboard</string>
-    <string name="navigationbottom_tentang">Tentang</string>
+    <string name="navigationbottom_kamus">Kamus</string>
 
     <!-- Action Bar -->
     <string name="actionbar_pengaturan">Pengaturan</string>
@@ -66,6 +66,15 @@
     <string name="layout_login_login">Login</string>
     <string name="layout_login_keluar">Keluar</string>
     <string name="layout_login_deskripsi">Belajar Cecimpedan Mudah Dan Mengasyikan.</string>
+    <string name="dashboard_statistik">Statistik</string>
+    <string name="dashboard_daftar_nilai">Daftar Nilai</string>
+    <string name="pencarianerror_pencarian_tidak_ditemukan">Pencarian Tidak Ditemukan</string>
+    <string name="pencarianerror_pesan">Maaf Kata Kunci Pencarian Yang Anda Masukan Tidak Kami Temukan, Coba Melakukan Pencarian Dengan Kata Kunci Lain</string>
+    <string name="kamus_alit">Alit-Alit</string>
+    <string name="kamus_biasa">Biasa</string>
+    <string name="modal_pause_kembali">Kembali</string>
+    <string name="modal_pause_permainan_terhenti">Permainan Terhenti</string>
+    <string name="modal_pause_pesan">Apakah anda ingin melanjutkan bermain.?</string>
 
 
 </resources>

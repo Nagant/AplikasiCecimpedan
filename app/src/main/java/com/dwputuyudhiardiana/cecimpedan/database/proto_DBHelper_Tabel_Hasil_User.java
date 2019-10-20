@@ -12,16 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class proto_DBHelper_Tabel_Hasil_User {
+    private proto_SQL dBHelper;
     public static final String TABEL_HASIL_USER                 = "tb_hasil_user";
     public static final String ID_HASIL_USER                    = "id_hasiluser";
     public static final String TANGGAL_BERMAIN_HASIL_USER       = "tanggal_bermain_hasiluser";
-    public static final String NAMA_PERMAINAN_HASIL_USER  = "nama_pemain_hasiluser";
+    public static final String NAMA_PERMAINAN_HASIL_USER        = "nama_pemain_hasiluser";
     public static final String NILAI_SKOR_HASIL_USER            = "nilai_hasiluser";
     public static final String TOTAL_JAWABAN_BENAR_HASIL_USER   = "totaljawaban_hasiluser";
     public static final String DETAIL_JAWABAN_HASIL_USER        = "detailjawaban_hasiluser";
+    private Context context;
 
-    public void tambahHasilUser(Context context, model_tb_jawaban_user hasiluser) {
-        proto_SQL dBHelper = new proto_SQL(context);
+    public proto_DBHelper_Tabel_Hasil_User(Context context){
+        this.context = context;
+    }
+
+    public void tambahHasilUser(model_tb_jawaban_user hasiluser) {
+        dBHelper = new proto_SQL(context);
         SQLiteDatabase db = dBHelper.getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put(TANGGAL_BERMAIN_HASIL_USER, hasiluser.gettanggalbermainUser());
@@ -33,8 +39,8 @@ public class proto_DBHelper_Tabel_Hasil_User {
         Log.d("DATABASE", "Tambah Hasil User "+hasiluser.gettanggalbermainUser()+" "+hasiluser.getdetailjawabanUser());
     }
 
-    public List<model_tb_jawaban_user> dapatkanJawabanUser(Context context) {
-        proto_SQL dBHelper = new proto_SQL(context);
+    public List<model_tb_jawaban_user> dapatkanJawabanUser() {
+        dBHelper = new proto_SQL(context);
         SQLiteDatabase db = dBHelper.getReadableDatabase();
         List<model_tb_jawaban_user> daftarJawabanUser = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABEL_HASIL_USER + " ORDER BY " + TANGGAL_BERMAIN_HASIL_USER + " DESC";
@@ -50,6 +56,7 @@ public class proto_DBHelper_Tabel_Hasil_User {
                 daftarJawabanUser.add(dataJawabanUser);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         dBHelper.close();
         return daftarJawabanUser;
     }

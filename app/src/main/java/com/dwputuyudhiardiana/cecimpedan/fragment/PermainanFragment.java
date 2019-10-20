@@ -17,18 +17,19 @@ import com.dwputuyudhiardiana.cecimpedan.R;
 import com.dwputuyudhiardiana.cecimpedan.database.proto_DBHelper_Tabel_Info;
 
 public class PermainanFragment extends Fragment implements View.OnClickListener {
-    private final proto_DBHelper_Tabel_Info data_info = new proto_DBHelper_Tabel_Info();
+    private proto_DBHelper_Tabel_Info data_info;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_permainan, container, false);
         ((MainActivity) getActivity())
                 .setPosisiTeks(getResources().getString(R.string.navigationbottom_permainan));
+        data_info = new proto_DBHelper_Tabel_Info(getContext());
         TextView permainan_info = root.findViewById(R.id.teks_tahukah);
         ImageView tombol_mulai_permainan = root.findViewById(R.id.tombol_mulai_permainan);
 
         tombol_mulai_permainan.setOnClickListener(this);
-        permainan_info.setText(String.valueOf(data_info.dapatkanInfoRandomize(getContext())));
+        permainan_info.setText(String.valueOf(data_info.dapatkanInfoRandomize()));
 
         return root;
     }

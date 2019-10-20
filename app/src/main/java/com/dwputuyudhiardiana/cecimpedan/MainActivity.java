@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_permainan,R.id.navigation_dashboard,R.id.navigation_tentang)
+                R.id.navigation_permainan,R.id.navigation_kamus,R.id.navigation_dashboard)
                 .build();
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         Glide.with(this)
                 .load(user.getPhotoUrl())
-                .centerCrop()
+                .centerInside()
                 .into(gambar_profile);
     }
 

@@ -10,14 +10,14 @@
         android:label="Permainan"
         tools:layout="@layout/fragment_permainan" />
     <fragment
-        android:id="@+id/navigation_tentang"
-        android:name="com.dwputuyudhiardiana.cecimpedan.fragment.TentangFragment"
-        android:label="Tentang"
-        tools:layout="@layout/fragment_tentang" />
-    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.dwputuyudhiardiana.cecimpedan.fragment.DashboardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/navigation_kamus"
+        android:name="com.dwputuyudhiardiana.cecimpedan.fragment.KamusFragment"
+        android:label="Kamus"
+        tools:layout="@layout/activity_tentang" />
 
 </navigation>

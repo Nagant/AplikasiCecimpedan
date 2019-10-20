@@ -9,11 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,35 +20,30 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.dwputuyudhiardiana.cecimpedan.prototipe.proto_permainan;
 import com.google.android.flexbox.FlexboxLayout;
-import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_jawaban_user;
 import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_cecimpedan;
-import com.dwputuyudhiardiana.cecimpedan.database.proto_DBHelper_Tabel_Hasil_User;
 import com.dwputuyudhiardiana.cecimpedan.database.proto_DBHelper_Tabel_Cecimpedan;
 import com.dwputuyudhiardiana.cecimpedan.prototipe.proto_animation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class PermainanActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final proto_DBHelper_Tabel_Hasil_User DBHelper_HASILUSER = new proto_DBHelper_Tabel_Hasil_User();
+
     private char[] jawabanArrayAcak;
     private CountDownTimer waktususun_huruf;
+    List<Integer> soalacak = new ArrayList<>();
     private int posisisoal;
     private int totalsoal;
     private int totalskor;
     private int totaljawabanbenar;
+    private int idsoal;
     private TextView susun_huruf_pertanyaan,susun_huruf_skor,susun_huruf_waktu,susun_huruf_level,susun_huruf_posisi_soal;
     private boolean waktu_habis;
     private final ArrayList<model_tb_cecimpedan> model_susun_huruf = new ArrayList<>();
@@ -60,9 +53,9 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
     private FlexboxLayout susun_huruf_kata;
     private FlexboxLayout susun_huruf_kotakjawaban;
     private String teks_jawaban = "";
-    private final proto_DBHelper_Tabel_Cecimpedan susun_huruf = new proto_DBHelper_Tabel_Cecimpedan();
-    JSONObject hasil_jawaban;
-    JSONArray hasil_soal_array,hasil_jawaban_array,hasil_jawaban_pemain_array;
+    private proto_DBHelper_Tabel_Cecimpedan susun_huruf;
+    private proto_permainan proto_permainan;
+    private boolean pause;
     FirebaseUser user;
 
     @Override
@@ -70,12 +63,15 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permainan);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_permainan);
+        Toolbar toolbar = findViewById(R.id.toolbar_permainan);
         if (toolbar == null) return;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_silang);
         user = FirebaseAuth.getInstance().getCurrentUser();
+        proto_permainan = new proto_permainan(getApplicationContext());
+        susun_huruf = new proto_DBHelper_Tabel_Cecimpedan(getApplicationContext());
+
         builderDialog              = new AlertDialog.Builder(this,R.style.KotakDialogRounded);
         susun_huruf_level          = findViewById(R.id.susun_huruf_level);
         susun_huruf_skor           = findViewById(R.id.susun_huruf_skor);
@@ -88,27 +84,42 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         Button btn_bersihkan = findViewById(R.id.btn_bersihkan);
         Button btn_acak      = findViewById(R.id.btn_acak);
         Button btn_cek       = findViewById(R.id.btn_cek);
-
         pb_posisi            = findViewById(R.id.susun_huruf_pb);
 
         btn_acak.setOnClickListener(this);
         btn_bersihkan.setOnClickListener(this);
         btn_cek.setOnClickListener(this);
 
-        hasil_jawaban       = new JSONObject();
-        hasil_soal_array    = new JSONArray();
-        hasil_jawaban_array = new JSONArray();
-        hasil_jawaban_pemain_array = new JSONArray();
-
+        int[] soal = proto_permainan.AcakSoal();
+        for(int nomorsoal:soal){
+            soalacak.add(nomorsoal);
+        }
         totalsoal = 10;
         jawaban();
-
+        pause = false;
     }
 
     @Override
     protected void onDestroy () {
         super.onDestroy();
         waktususun_huruf.cancel();
+    }
+
+    @Override
+    protected void onPause () {
+        super.onPause();
+        waktususun_huruf.cancel();
+        pause = true;
+    }
+
+    @Override
+    protected void onResume () {
+        super.onResume();
+        if(pause){
+            permainanterhenti();
+            pause = false;
+        }
+
     }
 
     @Override
@@ -122,7 +133,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v){
         switch(v.getId()){
             case R.id.btn_cek:
-                if(teks_jawaban.equals(String.valueOf(model_susun_huruf.get(posisisoal).getJawabanKuis()))){
+                if(teks_jawaban.equals(String.valueOf(model_susun_huruf.get(soalacak.get(posisisoal)).getJawabanKuis()))){
                     dialogStatusJawaban("benar");
                 }else if(teks_jawaban.equals("")){
                     dialogStatusJawaban("kosong");
@@ -141,6 +152,23 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
                 resetJawaban();
                 break;
         }
+    }
+
+    private void permainanterhenti(){
+        final View modalTerhenti = LayoutInflater.from(this).inflate(R.layout.modal_terhenti, null);
+        Button btn_lanjut = modalTerhenti.findViewById(R.id.btn_lanjut_msterhenti);
+        Button btn_kembali = modalTerhenti.findViewById(R.id.btn_kembali_msterhenti);
+        builderDialog.setView(modalTerhenti);
+        final AlertDialog DialogTerhenti = builderDialog.create();
+        DialogTerhenti.setCancelable(false);
+        btn_lanjut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lanjutwaktususun_huruf();
+                DialogTerhenti.cancel();
+            }
+        });
+            DialogTerhenti.show();
     }
 
     private void waktususun_huruf(long waktu){
@@ -179,23 +207,6 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         susun_huruf_posisi_soal.setText((posisisoal + 1) + "/10");
     }
 
-
-    private void jawabanPengguna(String statusJawaban){
-        try {
-            //Save Soal Acak Yang Akan disimpan pada JSON
-            hasil_jawaban.put("soalJawaban", hasil_soal_array.put(String.valueOf(model_susun_huruf.get(posisisoal).getIdKuis())));
-
-            //Save statusJawaban berdasarkan Soal Yang Akan disimpan pada JSON
-            hasil_jawaban.put("statusJawaban", hasil_jawaban_array.put(statusJawaban));
-            hasil_jawaban.put("statusJawabanPemain", hasil_jawaban_pemain_array.put(teks_jawaban));
-            String arrayList = hasil_jawaban.toString();
-            Log.d("DATABASE", arrayList);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     private void dialogStatusJawaban(final String statusJawaban){
         waktususun_huruf.cancel();
 
@@ -215,35 +226,35 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         String teks_statusjawaban;
         switch (statusJawaban) {
             case "benar":
-                teks_statusjawaban = getResources().getString(R.string.modal_jawaban_benar);;
+                teks_statusjawaban = getResources().getString(R.string.modal_jawaban_benar);
                 teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_benar_deskripsi);
                 teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_lanjut);
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabanbenar);
-                jawabanPengguna("Benar");
+
                 break;
             case "salah":
                 teks_statusjawaban = getResources().getString(R.string.modal_jawaban_salah);
                 teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_salah_deskripsi);
-                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_ulang);;
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_ulang);
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabansalah);
                 break;
             case "waktuhabis":
                 teks_statusjawaban = getResources().getString(R.string.modal_jawaban_waktuhabis);
                 teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_waktuhabis_deskripsi);
-                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_lanjut);;
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_lanjut);
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabansalah);
-                jawabanPengguna("Salah");
+
                 break;
             case "selesai":
                 teks_statusjawaban = getResources().getString(R.string.modal_jawaban_selesai);
                 teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_selesai_deskripsi);
-                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_baik);;
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_baik);
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabanbenar);
                 break;
             default:
                 teks_statusjawaban = getResources().getString(R.string.modal_jawaban_kosong);
                 teks_desstatusjawaban = getResources().getString(R.string.modal_jawaban_kosong_deskripsi);
-                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_baik);;
+                teks_tombol_lanjut = getResources().getString(R.string.tombol_modal_baik);
                 icon_statusjawaban.setAnimation(R.raw.modal_jawabankosong);
                 break;
         }
@@ -260,6 +271,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
                 switch (statusJawaban) {
                     case "benar":
                         posisisoal++;
+                        proto_permainan.jawabanPengguna(idsoal,"Benar",teks_jawaban);
                         totaljawabanbenar = totaljawabanbenar+1;
                         totalskor = totalskor + 10;
                         teks_jawaban = "";
@@ -269,6 +281,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
                         break;
                     case "waktuhabis":
                         posisisoal++;
+                        proto_permainan.jawabanPengguna(idsoal,"Salah",teks_jawaban);
                         teks_jawaban = "";
                         clearKotakJawaban();
                         jawaban();
@@ -294,7 +307,6 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void hasil() {
-        builderDialog.setCancelable(false);
         View modalHasil = LayoutInflater.from(this).inflate(R.layout.modal_hasil_permainan, null);
         String status_nilai = null;
         Button btn_detail_hasil = modalHasil.findViewById(R.id.btn_detail_hasil);
@@ -336,11 +348,13 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
            status_nilai = getResources().getString(R.string.modal_status_nilai_tinggi);
         }
         status_hasil.setText(status_nilai);
-
         builderDialog.setView(modalHasil);
+        final AlertDialog DialogHasil = builderDialog.create();
+        DialogHasil.show();
         btn_detail_hasil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DialogHasil.cancel();
                 Intent pindahDetail = new Intent(PermainanActivity.this, DetailHasilActivity.class);
                 startActivity(pindahDetail);
                 finish();
@@ -353,14 +367,9 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
                 finish();
             }
         });
-        builderDialog.create();
-        builderDialog.show();
 
-        //Save Ke Database
-        Date now = new Date();
-        SimpleDateFormat dapatkantgl = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        String arrayList = hasil_jawaban.toString();
-        DBHelper_HASILUSER.tambahHasilUser(getApplicationContext(),new model_tb_jawaban_user(dapatkantgl.format(now), user.getDisplayName(),String.valueOf(totalskor),String.valueOf(totaljawabanbenar),arrayList));
+
+        proto_permainan.simpanHasil(user.getDisplayName(),String.valueOf(totalskor),String.valueOf(totaljawabanbenar));
     }
 
 
@@ -380,7 +389,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
             waktususun_huruf.cancel();
         }else{
             updateSkor();
-            model_susun_huruf.addAll(susun_huruf.dapatkanSoal(getApplicationContext()));
+            model_susun_huruf.addAll(susun_huruf.dapatkanSoal());
             waktu_habis = false;
             kotakkatajawaban();
             waktususun_huruf(30000);
@@ -392,11 +401,11 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void kotakkatajawaban(){
-        susun_huruf_pertanyaan.setText(String.valueOf(model_susun_huruf.get(posisisoal).getSoalKuis()));
-        Log.d("DATABASE", String.valueOf(model_susun_huruf.get(posisisoal).getSoalKuis()));
+        susun_huruf_pertanyaan.setText(String.valueOf(model_susun_huruf.get(soalacak.get(posisisoal)).getSoalKuis()));
+        idsoal = model_susun_huruf.get(soalacak.get(posisisoal)).getIdKuis();
         susun_huruf_kata.removeAllViews();
         clearKotakJawaban();
-        jawabanArrayAcak = acakHuruf(String.valueOf(model_susun_huruf.get(posisisoal).getJawabanKuis())).toCharArray();
+        jawabanArrayAcak = proto_permainan.acakHuruf(String.valueOf(model_susun_huruf.get(soalacak.get(posisisoal)).getJawabanKuis())).toCharArray();
 
         for(int i = 0; i < jawabanArrayAcak.length; i++ )
         {
@@ -422,17 +431,6 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private String acakHuruf(String kataacak){
-        List<Character> karakter = new ArrayList<>();
-        for(char c:kataacak.toCharArray()){
-            karakter.add(c);
-        }
-        StringBuilder hasil = new StringBuilder(kataacak.length());
-        while(karakter.size()!=0){
-            int acak = (int)(Math.random()*karakter.size());
-            hasil.append(karakter.remove(acak));
-        }
-        return hasil.toString();
-    }
+
 }
 

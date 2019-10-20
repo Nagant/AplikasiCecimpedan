@@ -18,6 +18,7 @@
         <!-- Debug Layout -->
         <activity android:name=".PermainanActivity"/>
         <activity android:name=".DetailHasilActivity"/>
+        <activity android:name=".TentangActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

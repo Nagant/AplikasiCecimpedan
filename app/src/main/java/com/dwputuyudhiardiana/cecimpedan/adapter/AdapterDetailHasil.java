@@ -28,9 +28,9 @@ public class AdapterDetailHasil extends RecyclerView.Adapter<AdapterDetailHasil.
     private final Context context;
 
     public AdapterDetailHasil(Context context, ArrayList<model_tb_detail_jawaban> Hasil_Lists){
-        this.context=context;
+        this.context = context;
         this.Hasil_Lists = Hasil_Lists;
-        inflater=LayoutInflater.from(context);
+        inflater = LayoutInflater.from(context);
     }
 
     @Override

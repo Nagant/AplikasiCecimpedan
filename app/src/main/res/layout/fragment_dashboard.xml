@@ -7,10 +7,10 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dashboard_gambar"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:src="@drawable/foto"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Rai Saputra"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
@@ -35,28 +35,31 @@
         android:id="@+id/dashboard_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashboard_nama" />
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/dashboard_tablayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashboard_email">
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_email"
+        app:tabBackground="@android:color/transparent"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="fixed">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Statistik" />
+            android:text="@string/dashboard_statistik" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daftar Nilai" />
+            android:text="@string/dashboard_daftar_nilai" />
 
     </com.google.android.material.tabs.TabLayout>
 

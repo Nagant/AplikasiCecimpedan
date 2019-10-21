@@ -14,19 +14,19 @@ import java.util.List;
 
 public class proto_DBHelper_Tabel_Cecimpedan {
     private proto_SQL dBHelper;
-    public static final String TABEL_KAMUS          = "tb_kamus";
-    public static final String ID_KAMUS             = "id_kamus";
-    public static final String KATEGORI_KAMUS       = "kat_kamus";
-    public static final String SOAL_KAMUS           = "soal_kamus";
-    public static final String JAWABAN_KAMUS        = "jawaban_kamus";
-    public static final String KUIS_KAMUS           = "kuis_kamus";
+    static final String TABEL_KAMUS          = "tb_kamus";
+    static final String ID_KAMUS             = "id_kamus";
+    static final String KATEGORI_KAMUS       = "kat_kamus";
+    static final String SOAL_KAMUS           = "soal_kamus";
+    static final String JAWABAN_KAMUS        = "jawaban_kamus";
+    static final String KUIS_KAMUS           = "kuis_kamus";
     private Context context;
 
     public proto_DBHelper_Tabel_Cecimpedan(Context context){
         this.context = context;
     }
 
-    public void tambahKamus(SQLiteDatabase db, model_tb_kamus kamus) {
+    void tambahKamus(SQLiteDatabase db, model_tb_kamus kamus) {
         ContentValues values = new ContentValues();
         values.put(KATEGORI_KAMUS, kamus.getKatKamus());
         values.put(SOAL_KAMUS, kamus.getSoalKamus());

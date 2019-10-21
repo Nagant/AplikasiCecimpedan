@@ -14,7 +14,7 @@ public class proto_SQL extends SQLiteOpenHelper {
     private final proto_DBHelper_Tabel_Info DBHelper_INFO;
     private final proto_DBHelper_Tabel_Cecimpedan DBHelper_KAMUS;
 
-    public proto_SQL(Context context) {
+     proto_SQL(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         DBHelper_KAMUS = new proto_DBHelper_Tabel_Cecimpedan(context);
         DBHelper_INFO = new proto_DBHelper_Tabel_Info(context);

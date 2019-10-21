@@ -30,6 +30,7 @@ public class AdapterKamus extends RecyclerView.Adapter<AdapterKamus.ViewHolder> 
         inflater=LayoutInflater.from(context);
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View view = inflater.inflate(R.layout.item_kamus, parent, false);
@@ -78,7 +79,7 @@ public class AdapterKamus extends RecyclerView.Adapter<AdapterKamus.ViewHolder> 
             super(itemView);
             kam_soal     = itemView.findViewById(R.id.kamus_soal);
             kam_des      = itemView.findViewById(R.id.kamus_kategori);
-            kam_no       = itemView.findViewById(R.id.kamus_nomor);
+            kam_no       = itemView.findViewById(R.id.nilai_nomor);
             card_view_kamus = itemView.findViewById(R.id.card_view_kamus);
 
         }

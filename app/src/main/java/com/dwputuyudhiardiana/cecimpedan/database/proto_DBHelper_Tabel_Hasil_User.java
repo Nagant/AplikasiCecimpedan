@@ -13,13 +13,13 @@ import java.util.List;
 
 public class proto_DBHelper_Tabel_Hasil_User {
     private proto_SQL dBHelper;
-    public static final String TABEL_HASIL_USER                 = "tb_hasil_user";
-    public static final String ID_HASIL_USER                    = "id_hasiluser";
-    public static final String TANGGAL_BERMAIN_HASIL_USER       = "tanggal_bermain_hasiluser";
-    public static final String NAMA_PERMAINAN_HASIL_USER        = "nama_pemain_hasiluser";
-    public static final String NILAI_SKOR_HASIL_USER            = "nilai_hasiluser";
-    public static final String TOTAL_JAWABAN_BENAR_HASIL_USER   = "totaljawaban_hasiluser";
-    public static final String DETAIL_JAWABAN_HASIL_USER        = "detailjawaban_hasiluser";
+     static final String TABEL_HASIL_USER                 = "tb_hasil_user";
+     static final String ID_HASIL_USER                    = "id_hasiluser";
+     static final String TANGGAL_BERMAIN_HASIL_USER       = "tanggal_bermain_hasiluser";
+     static final String NAMA_PERMAINAN_HASIL_USER        = "nama_pemain_hasiluser";
+     static final String NILAI_SKOR_HASIL_USER            = "nilai_hasiluser";
+     static final String TOTAL_JAWABAN_BENAR_HASIL_USER   = "totaljawaban_hasiluser";
+     static final String DETAIL_JAWABAN_HASIL_USER        = "detailjawaban_hasiluser";
     private Context context;
 
     public proto_DBHelper_Tabel_Hasil_User(Context context){
@@ -39,17 +39,18 @@ public class proto_DBHelper_Tabel_Hasil_User {
         Log.d("DATABASE", "Tambah Hasil User "+hasiluser.gettanggalbermainUser()+" "+hasiluser.getdetailjawabanUser());
     }
 
-    public List<model_tb_jawaban_user> dapatkanJawabanUser() {
+    public List<model_tb_jawaban_user> dapatkanJawabanUser(String namapemain) {
         dBHelper = new proto_SQL(context);
         SQLiteDatabase db = dBHelper.getReadableDatabase();
         List<model_tb_jawaban_user> daftarJawabanUser = new ArrayList<>();
-        String selectQuery = "SELECT  * FROM " + TABEL_HASIL_USER + " ORDER BY " + TANGGAL_BERMAIN_HASIL_USER + " DESC";
+        String selectQuery;
+            selectQuery = "SELECT  * FROM " + TABEL_HASIL_USER + " WHERE nama_pemain_hasiluser = '" + namapemain + "' ORDER BY " + TANGGAL_BERMAIN_HASIL_USER + " DESC";
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
                 model_tb_jawaban_user dataJawabanUser = new model_tb_jawaban_user();
                 dataJawabanUser.settanggalbermainUser(cursor.getString(1));
-                dataJawabanUser.setnamajenispermainanUser(cursor.getString(2));
+                dataJawabanUser.setnamapemainanUser(cursor.getString(2));
                 dataJawabanUser.setnilaiUserUser(cursor.getString(3));
                 dataJawabanUser.settotaljawabanbenarUser(cursor.getString(4));
                 dataJawabanUser.setdetailjawabanUser(cursor.getString(5));

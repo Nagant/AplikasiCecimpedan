@@ -5,15 +5,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_terhenti" />
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/modal_jawabankosong"
+        app:lottie_scale="100" />
 
     <TextView
-        android:id="@+id/msterhenti_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -21,24 +23,23 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:gravity="center"
-        android:text="@string/modal_pause_permainan_terhenti"
+        android:text="Berhenti Bermain"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="@color/colorAccent"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/msterhenti_deskripsi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="@string/modal_pause_pesan"
+        android:text="Apakah anda ingin berhenti bermain.?"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <Button
-        android:id="@+id/btn_lanjut_msterhenti"
+        android:id="@+id/btn_ya_msberhenti"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -49,11 +50,12 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:background="@drawable/drw_tombol_bulat"
-        android:text="@string/tombol_modal_lanjut"
+        android:backgroundTint="@color/warnaMerahMaterial"
+        android:text="Ya"
         android:textColor="@android:color/white" />
 
     <Button
-        android:id="@+id/btn_kembali_msterhenti"
+        android:id="@+id/btn_tidak_msberhenti"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -64,8 +66,8 @@
         android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:background="@drawable/drw_tombol_bulat"
-        android:backgroundTint="@color/warnaPutih"
-        android:text="@string/modal_pause_kembali"
-        android:textColor="@color/colorAccent" />
+
+        android:text="Tidak"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

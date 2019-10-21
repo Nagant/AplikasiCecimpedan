@@ -22,8 +22,8 @@ public class model_tb_jawaban_user {
         this.tanggalbermainUser = tanggalbermainUser;
     }
 
-    public void setnamajenispermainanUser(String namajenispermainanUser) {
-        this.tanggalbermainUser = namajenispermainanUser;
+    public void setnamapemainanUser(String namajenispermainanUser) {
+        this.namapemainanUser = namajenispermainanUser;
     }
 
     public void setnilaiUserUser(String nilaiUser) {

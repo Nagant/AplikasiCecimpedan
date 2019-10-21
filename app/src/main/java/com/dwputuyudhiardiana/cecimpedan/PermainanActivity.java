@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -122,10 +123,17 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            berhenti();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
-        waktususun_huruf.cancel();
+        berhenti();
         return true;
     }
 
@@ -168,7 +176,43 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
                 DialogTerhenti.cancel();
             }
         });
+
+        btn_kembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                waktususun_huruf.cancel();
+                DialogTerhenti.cancel();
+                finish();
+            }
+        });
             DialogTerhenti.show();
+    }
+
+
+    private void berhenti(){
+        final View modalBerhenti = LayoutInflater.from(this).inflate(R.layout.modal_keluar, null);
+        Button btn_ya = modalBerhenti.findViewById(R.id.btn_ya_msberhenti);
+        Button btn_tidak = modalBerhenti.findViewById(R.id.btn_tidak_msberhenti);
+        builderDialog.setView(modalBerhenti);
+        final AlertDialog DialogBerhenti = builderDialog.create();
+        DialogBerhenti.setCancelable(false);
+        btn_tidak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lanjutwaktususun_huruf();
+                DialogBerhenti.cancel();
+            }
+        });
+
+        btn_ya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                waktususun_huruf.cancel();
+                DialogBerhenti.cancel();
+                finish();
+            }
+        });
+        DialogBerhenti.show();
     }
 
     private void waktususun_huruf(long waktu){

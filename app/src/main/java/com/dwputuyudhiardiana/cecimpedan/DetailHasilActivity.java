@@ -2,8 +2,6 @@ package com.dwputuyudhiardiana.cecimpedan;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +14,8 @@ import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_detail_jawaban;
 import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_jawaban_user;
 import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_cecimpedan;
 import com.dwputuyudhiardiana.cecimpedan.database.proto_DBHelper_Tabel_Hasil_User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailHasilActivity extends AppCompatActivity {
-    private proto_DBHelper_Tabel_Hasil_User hasiluser;
-    private proto_DBHelper_Tabel_Cecimpedan susun_huruf;
     private final ArrayList<model_tb_detail_jawaban> model_detail = new ArrayList<>();
     private final ArrayList<model_tb_cecimpedan> model_susun_huruf = new ArrayList<>();
     private final ArrayList<model_tb_jawaban_user> model_jawaban_user = new ArrayList<>();
@@ -35,15 +33,16 @@ public class DetailHasilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hasil);
-        susun_huruf = new proto_DBHelper_Tabel_Cecimpedan(getApplicationContext());
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        proto_DBHelper_Tabel_Cecimpedan susun_huruf = new proto_DBHelper_Tabel_Cecimpedan(getApplicationContext());
         Toolbar toolbar = findViewById(R.id.toolbar_hasil);
-        hasiluser = new proto_DBHelper_Tabel_Hasil_User(getApplicationContext());
+        proto_DBHelper_Tabel_Hasil_User hasiluser = new proto_DBHelper_Tabel_Hasil_User(getApplicationContext());
         if (toolbar == null) return;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_silang);
 
-        List<model_tb_jawaban_user> hasil = hasiluser.dapatkanJawabanUser();
+        List<model_tb_jawaban_user> hasil = hasiluser.dapatkanJawabanUser(user.getDisplayName());
         model_jawaban_user.addAll(hasil);
 
 

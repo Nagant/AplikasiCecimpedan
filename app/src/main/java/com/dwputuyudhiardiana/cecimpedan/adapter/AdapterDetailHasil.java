@@ -33,6 +33,7 @@ public class AdapterDetailHasil extends RecyclerView.Adapter<AdapterDetailHasil.
         inflater = LayoutInflater.from(context);
     }
 
+    @NonNull
     @Override
     public AdapterDetailHasil.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View view = inflater.inflate(R.layout.item_hasil, parent, false);

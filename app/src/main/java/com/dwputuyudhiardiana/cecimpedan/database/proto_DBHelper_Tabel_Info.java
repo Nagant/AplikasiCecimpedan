@@ -9,10 +9,9 @@ import android.util.Log;
 import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_info_tahukah;
 
 public class proto_DBHelper_Tabel_Info {
-    private proto_SQL dBHelper;
-    public static final String TABEL_INFO   = "tb_tahukah_info";
-    public static final String ID_INFO      = "id_info";
-    public static final String ISI_INFO     = "isi_info";
+    static final String TABEL_INFO   = "tb_tahukah_info";
+     static final String ID_INFO      = "id_info";
+     static final String ISI_INFO     = "isi_info";
     private Context context;
 
     public proto_DBHelper_Tabel_Info(Context context){
@@ -20,7 +19,7 @@ public class proto_DBHelper_Tabel_Info {
     }
 
 
-    public void tambahInfo(SQLiteDatabase db, model_tb_info_tahukah info) {
+     void tambahInfo(SQLiteDatabase db, model_tb_info_tahukah info) {
         ContentValues values = new ContentValues();
         values.put(ISI_INFO, info.getIsiInfo());
         db.insert(TABEL_INFO, null, values);
@@ -28,7 +27,7 @@ public class proto_DBHelper_Tabel_Info {
     }
 
     public String dapatkanInfoRandomize() {
-        dBHelper = new proto_SQL(context);
+        proto_SQL dBHelper = new proto_SQL(context);
         SQLiteDatabase db = dBHelper.getReadableDatabase();
         Cursor cursor = db.query(TABEL_INFO, new String[]{ID_INFO,
                 ISI_INFO}, null, null, null, null, "RANDOM()", "1");

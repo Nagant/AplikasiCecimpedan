@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         button_keluar.setOnClickListener(this);
 
         sharedPengaturan =  getSharedPreferences("pengaturanaplikasi", MODE_PRIVATE);
-        Boolean statusloginpengguna = sharedPengaturan.getBoolean("statuslogin", false);
+        boolean statusloginpengguna = sharedPengaturan.getBoolean("statuslogin", false);
 
         if(statusloginpengguna){
             updateUI(mAuth.getCurrentUser());

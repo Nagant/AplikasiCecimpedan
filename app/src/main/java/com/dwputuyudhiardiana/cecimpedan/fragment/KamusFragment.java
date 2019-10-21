@@ -22,6 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class KamusFragment extends Fragment {
     private RecyclerView rv_kamus;
@@ -34,7 +35,7 @@ public class KamusFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ((MainActivity) getActivity())
+        ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setPosisiTeks(getResources().getString(R.string.navigationbottom_kamus));
         kamus = new proto_DBHelper_Tabel_Cecimpedan(getActivity());
         adapter = new AdapterKamus(getActivity());

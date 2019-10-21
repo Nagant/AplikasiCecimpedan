@@ -49,18 +49,15 @@
         app:layout_constraintTop_toBottomOf="@+id/dashboard_email"
         app:tabBackground="@android:color/transparent"
         app:tabIndicatorFullWidth="false"
-        app:tabMode="fixed">
+        app:tabMode="fixed"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dashboard_statistik" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dashboard_daftar_nilai" />
-
-    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_tablayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

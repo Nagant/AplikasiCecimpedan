@@ -13,4 +13,5 @@
     <color name="warnaPutih">#FFFFFF</color>
     <color name="warnaHijau">#59B189</color>
     <color name="warnaMerah">#CD5050</color>
+    <color name="warnaMerahMaterial">#f44336</color>
 </resources>

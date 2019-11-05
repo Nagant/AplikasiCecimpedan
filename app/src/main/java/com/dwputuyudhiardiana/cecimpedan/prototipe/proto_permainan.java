@@ -51,15 +51,15 @@ public class proto_permainan {
         return new String(kataArray);
     }
 
-    public int[] AcakSoal(){
+    public int[] AcakSoal(int totalsoal){
         Random acak = new Random();
-        int[] hasil = new int[10];
+        int[] hasil = new int[totalsoal];
         int z0 = acak.nextInt(36+1); //Bilangan Acak Menggunakan Kata Yang Akan Di Acak [Mengambil Bilangan Acak dimulai dari 1 hingga Jumlah Soal(Soal di database 40)]
         int a = 1; // Faktor Pengali
         int c = 7; // Penambah
         int m=36; //Modulus Menggunakan Jumlah Total Soal
         int z = z0;
-        for(int i=0; i<10; i++){ //Perulangan dari 0 sampai 10, akan menampilkan 10 angka acak dari 1 sampai 40
+        for(int i=0; i<totalsoal; i++){ //Perulangan dari 0 sampai 10, akan menampilkan 10 angka acak dari 1 sampai 40
             z=(a*z+c)%m; //Model LCG
             hasil[i]=z;//Array
         }
@@ -84,9 +84,9 @@ public class proto_permainan {
         }
     }
 
-    public void simpanHasil(String permainanNama,String permainanTotalSkor, String permainantotaljawabanbenar) {
+    public void simpanHasil(String permainanNama,String permainanTotalSkor, String permainantotaljawabanbenar, String totalskor) {
         Date now = new Date();
         SimpleDateFormat dapatkantgl = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        DBHelper_HASILUSER.tambahHasilUser(new model_tb_jawaban_user(dapatkantgl.format(now), permainanNama, permainanTotalSkor, permainantotaljawabanbenar, hasil_jawaban.toString()));
+        DBHelper_HASILUSER.tambahHasilUser(new model_tb_jawaban_user(dapatkantgl.format(now), permainanNama, permainanTotalSkor, permainantotaljawabanbenar, hasil_jawaban.toString(), totalskor));
     }
 }

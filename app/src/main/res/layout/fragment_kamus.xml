@@ -96,11 +96,10 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/kamus_tab"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kamus_kotakcari"
-        app:tabIndicatorFullWidth="false">
+        app:layout_constraintTop_toBottomOf="@+id/kamus_kotakcari">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

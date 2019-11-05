@@ -9,10 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dwputuyudhiardiana.cecimpedan.MainActivity;
 import com.dwputuyudhiardiana.cecimpedan.R;
+import com.dwputuyudhiardiana.cecimpedan.bottomsheet.bottomsheet_kamus;
 import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_kamus;
 
 import java.util.ArrayList;
@@ -47,13 +49,8 @@ public class AdapterKamus extends RecyclerView.Adapter<AdapterKamus.ViewHolder> 
         holder.card_view_kamus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, MainActivity.class);
-                int posisi = position+1;
-                i.putExtra("soal_kamus", String.valueOf(Kamus_Lists.get(position).getSoalKamus()));
-                i.putExtra("no_kamus", "Soal "+posisi);
-                i.putExtra("kategori_kamus",String.valueOf(Kamus_Lists.get(position).getKatKamus()));
-                i.putExtra("arti_kamus", String.valueOf(Kamus_Lists.get(position).getJawabanKamus()));
-                context.startActivity(i);
+                bottomsheet_kamus BottomSheetCara = bottomsheet_kamus.newInstance(String.valueOf(Kamus_Lists.get(position).getSoalKamus()),String.valueOf(Kamus_Lists.get(position).getJawabanKamus()));
+                BottomSheetCara.show(((FragmentActivity)context).getSupportFragmentManager(),"Kamus");
             }
         });
     }

@@ -1,0 +1,13 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/drw_tombol_bulat"
+        android:color="@android:color/white" android:state_selected="true" />
+
+    <item android:drawable="@drawable/drw_tombol_bulat"
+        android:color="@android:color/white" android:state_pressed="true" />
+
+    <item
+        android:drawable="@drawable/drw_tombol_bulat_line"
+        android:color="@color/colorAccent" />
+
+</selector>

@@ -46,6 +46,7 @@ public class KamusFragment extends Fragment {
         box_pencariantidakada = root.findViewById(R.id.box_pencariantidakada);
         icon_pencarian = root.findViewById(R.id.icon_pencariantidakada);
         rv_kamus.setLayoutManager(new LinearLayoutManager(getActivity()));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabRippleColor(null);
         kotak_carikamus.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

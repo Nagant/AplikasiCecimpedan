@@ -14,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dwputuyudhiardiana.cecimpedan.R;
-import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_detail_jawaban;
 import com.dwputuyudhiardiana.cecimpedan.database.model.model_tb_jawaban_user;
 
 import java.util.ArrayList;
@@ -49,18 +48,23 @@ public class AdapterDaftarNilai extends RecyclerView.Adapter<AdapterDaftarNilai.
         holder.nilai_totalskor.setText(ListJawabanUser.getnilaiUserUser());
         holder.nilai_jawabanbenar.setText(ListJawabanUser.gettotaljawabanbenarUser());
         int totalskor = Integer.valueOf(ListJawabanUser.getnilaiUserUser());
-        if(totalskor>=0 && totalskor <= 10){
+        int skoring = Integer.valueOf(ListJawabanUser.gettotaljawabanbenarUser()) * 100 / Integer.valueOf(ListJawabanUser.getdetailTotalSoal());
+        if(skoring>=0 && skoring <= 10){
             holder.nilai_bintang1.setVisibility(View.GONE);
             holder.nilai_bintang2.setVisibility(View.GONE);
             holder.nilai_bintang3.setVisibility(View.GONE);
-        }else if(totalskor>=20 && totalskor <= 30){
+        }else if(skoring>=20 && skoring <= 30){
             holder.nilai_bintang1.setVisibility(View.VISIBLE);
             holder.nilai_bintang2.setVisibility(View.GONE);
             holder.nilai_bintang3.setVisibility(View.GONE);
-        }else if(totalskor>=40 && totalskor <= 80){
+        }else if(skoring>=40 && skoring <= 80){
             holder.nilai_bintang1.setVisibility(View.VISIBLE);
             holder.nilai_bintang2.setVisibility(View.VISIBLE);
             holder.nilai_bintang3.setVisibility(View.GONE);
+        }else if(skoring>=90 && skoring <= 100){
+            holder.nilai_bintang1.setVisibility(View.VISIBLE);
+            holder.nilai_bintang2.setVisibility(View.VISIBLE);
+            holder.nilai_bintang3.setVisibility(View.VISIBLE);
         }
 
         holder.toggle.setOnClickListener(new View.OnClickListener() {

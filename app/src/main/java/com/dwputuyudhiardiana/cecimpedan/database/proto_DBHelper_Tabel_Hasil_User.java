@@ -20,6 +20,7 @@ public class proto_DBHelper_Tabel_Hasil_User {
      static final String NILAI_SKOR_HASIL_USER            = "nilai_hasiluser";
      static final String TOTAL_JAWABAN_BENAR_HASIL_USER   = "totaljawaban_hasiluser";
      static final String DETAIL_JAWABAN_HASIL_USER        = "detailjawaban_hasiluser";
+    static final String TOTAL_SOAL_HASIL_USER             = "totalsoal_hasiluser";
     private Context context;
 
     public proto_DBHelper_Tabel_Hasil_User(Context context){
@@ -35,6 +36,7 @@ public class proto_DBHelper_Tabel_Hasil_User {
         values.put(NILAI_SKOR_HASIL_USER, hasiluser.getnilaiUserUser());
         values.put(TOTAL_JAWABAN_BENAR_HASIL_USER, hasiluser.gettotaljawabanbenarUser());
         values.put(DETAIL_JAWABAN_HASIL_USER, hasiluser.getdetailjawabanUser());
+        values.put(TOTAL_SOAL_HASIL_USER, hasiluser.getdetailTotalSoal());
         db.insert(TABEL_HASIL_USER, null, values);
         Log.d("DATABASE", "Tambah Hasil User "+hasiluser.gettanggalbermainUser()+" "+hasiluser.getdetailjawabanUser());
     }
@@ -54,6 +56,7 @@ public class proto_DBHelper_Tabel_Hasil_User {
                 dataJawabanUser.setnilaiUserUser(cursor.getString(3));
                 dataJawabanUser.settotaljawabanbenarUser(cursor.getString(4));
                 dataJawabanUser.setdetailjawabanUser(cursor.getString(5));
+                dataJawabanUser.setdetailTotalSoal(cursor.getString(6));
                 daftarJawabanUser.add(dataJawabanUser);
             } while (cursor.moveToNext());
         }

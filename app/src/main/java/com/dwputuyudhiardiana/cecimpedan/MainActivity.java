@@ -7,8 +7,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -50,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_pengaturan, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actionbar_pengaturan:
+                Intent pengaturan = new Intent(MainActivity.this,PengaturanActivity.class);
+                startActivity(pengaturan);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void setPosisiTeks(String posisi) {

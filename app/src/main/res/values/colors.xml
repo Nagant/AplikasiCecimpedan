@@ -7,11 +7,13 @@
     <!-- Warna Icon Pada Action Bar -->
     <color name="warnaIconActionBar">#5F6368</color>
 
+    <!-- Warna Indicator Intro -->
+    <color name="indicator_unselected">#4D000000</color>
 
     <!-- Warna Pendukung -->
     <color name="warnaTintOranye">#75F48120</color>
     <color name="warnaPutih">#FFFFFF</color>
     <color name="warnaHijau">#59B189</color>
     <color name="warnaMerah">#CD5050</color>
-    <color name="warnaMerahMaterial">#f44336</color>
+    <color name="warnaMerahMaterial">#F44336</color>
 </resources>

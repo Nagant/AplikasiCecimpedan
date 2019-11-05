@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,7 @@ public class DaftarNilaiDashboard extends Fragment {
     private RecyclerView rv_nilai;
     private proto_DBHelper_Tabel_Hasil_User hasilUser;
     private AdapterDaftarNilai adapter;
+    private RelativeLayout box_nilaitidakada;
     private final ArrayList<model_tb_jawaban_user> model_jawaban_user = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,11 +36,15 @@ public class DaftarNilaiDashboard extends Fragment {
         adapter = new AdapterDaftarNilai(getActivity());
         View root =  inflater.inflate(R.layout.fragment_daftar_nilai, container, false);
         rv_nilai = root.findViewById(R.id.rv_nilai);
+        box_nilaitidakada = root.findViewById(R.id.box_nilaitidakada);
         rv_nilai.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<model_tb_jawaban_user> hasiluser = hasilUser.dapatkanJawabanUser(user.getDisplayName());
         model_jawaban_user.addAll(hasiluser);
         adapter.setListContent(model_jawaban_user);
         rv_nilai.setAdapter(adapter);
+        if(hasiluser.size() == 0){
+            box_nilaitidakada.setVisibility(View.VISIBLE);
+        }
         return root;
     }
 }

@@ -32,18 +32,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int RC_SIGN_IN = 9001;
     private Intent activity;
     private SharedPreferences sharedPengaturan;
-
+    private boolean tampilanintro,statusloginpengguna;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        }
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getResources().getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -60,7 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         button_keluar.setOnClickListener(this);
 
         sharedPengaturan =  getSharedPreferences("pengaturanaplikasi", MODE_PRIVATE);
-        boolean statusloginpengguna = sharedPengaturan.getBoolean("statuslogin", false);
+        statusloginpengguna = sharedPengaturan.getBoolean("statuslogin", false);
+        tampilanintro = sharedPengaturan.getBoolean("tampilkanintro",true);
 
         if(statusloginpengguna){
             updateUI(mAuth.getCurrentUser());
@@ -89,8 +83,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(user != null){
             SharedPreferences.Editor pengaturanSharedEditor = sharedPengaturan.edit();
             pengaturanSharedEditor.putBoolean("statuslogin", true).apply();
-            activity = new Intent(LoginActivity.this,
-                    MainActivity.class);
+            if(!tampilanintro){
+                activity = new Intent(LoginActivity.this,
+                        MainActivity.class);
+            }else{
+                activity = new Intent(LoginActivity.this,
+                        IntroActivity.class);
+            }
             startActivity(activity);
             finish();
         }

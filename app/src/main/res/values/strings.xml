@@ -62,19 +62,42 @@
     <string name="modal_status_nilai_rendah">Lumayan</string>
     <string name="modal_status_nilai_menengah">Bagus</string>
     <string name="modal_status_nilai_tinggi">Luar Biasa</string>
+
+    <!-- Layout Tentang Deskripsi -->
     <string name="layout_tentang_deskripsi">Deskripsi</string>
+
+    <!--Layout Login -->
     <string name="layout_login_login">Login</string>
     <string name="layout_login_keluar">Keluar</string>
     <string name="layout_login_deskripsi">Belajar Cecimpedan Mudah Dan Mengasyikan.</string>
+
+    <!-- Layout Profile Pada Dashboard -->
     <string name="dashboard_statistik">Statistik</string>
     <string name="dashboard_daftar_nilai">Daftar Nilai</string>
+
+    <!-- Kamus Pencarian Tidak Ada -->
     <string name="pencarianerror_pencarian_tidak_ditemukan">Pencarian Tidak Ditemukan</string>
     <string name="pencarianerror_pesan">Maaf Kata Kunci Pencarian Yang Anda Masukan Tidak Kami Temukan, Coba Melakukan Pencarian Dengan Kata Kunci Lain</string>
+
+    <!-- Kamus Tab -->
     <string name="kamus_alit">Alit-Alit</string>
     <string name="kamus_biasa">Biasa</string>
+
+    <!-- Modal Pause -->
     <string name="modal_pause_kembali">Kembali</string>
     <string name="modal_pause_permainan_terhenti">Permainan Terhenti</string>
     <string name="modal_pause_pesan">Apakah anda ingin melanjutkan bermain.?</string>
+
+    <!-- Intro Deskripsi -->
+    <string name="label_1">Om Swastyastu</string>
+    <string name="desc_1">Selamat datang di aplikasi Cecimpedan disini kamu bisa bermain dan belajar.</string>
+    <string name="label_2">Susun Hurufnya</string>
+    <string name="desc_2">Permainan yang sederhana untuk meningkatkan kemampuan kamu dalam cecimpedan.</string>
+    <string name="label_3">Bantu Kami Dalam Mengmebangkan</string>
+    <string name="desc_3">entahlah mau dikasi apa</string>
+
+    <!-- Bottom Sheet Level -->
+    <string name="bottomsheet_level_total_soal_permainan">Total Soal Permainan : %1$s</string>
 
 
 </resources>

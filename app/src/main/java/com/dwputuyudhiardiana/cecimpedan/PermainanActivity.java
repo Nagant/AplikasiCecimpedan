@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -91,11 +92,21 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         btn_bersihkan.setOnClickListener(this);
         btn_cek.setOnClickListener(this);
 
-        int[] soal = proto_permainan.AcakSoal();
+
+        String level = getIntent().getStringExtra("level");
+        if(level.equals("mudah")){
+            totalsoal = 10;
+        }else if(level.equals("sedang")){
+            totalsoal = 20;
+        }else if(level.equals("susah")){
+            totalsoal = 30;
+        }
+        Log.d("tag",level);
+        int[] soal = proto_permainan.AcakSoal(totalsoal);
         for(int nomorsoal:soal){
             soalacak.add(nomorsoal);
         }
-        totalsoal = 10;
+
         jawaban();
         pause = false;
     }
@@ -248,7 +259,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         pb_posisi.startAnimation(anim);
         susun_huruf_level.setText("Soal : " + (posisisoal + 1));
         susun_huruf_skor.setText("Skor : " + totalskor);
-        susun_huruf_posisi_soal.setText((posisisoal + 1) + "/10");
+        susun_huruf_posisi_soal.setText((posisisoal + 1) + "/" + totalsoal);
     }
 
     private void dialogStatusJawaban(final String statusJawaban){
@@ -370,16 +381,16 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         LottieAnimationView bintang_kedua_hasil = modalHasil.findViewById(R.id.bintang_kedua_hasil);
         LottieAnimationView bintang_ketiga_hasil = modalHasil.findViewById(R.id.bintang_ketiga_hasil);
 
-
-        if(totalskor>=0 && totalskor <= 10){
+        int skoring = totaljawabanbenar * 100 / totalsoal;
+        if(skoring>=0 && skoring <= 10){
             gagal_hasil.setVisibility(View.VISIBLE);
             bintang_hasil.setVisibility(View.GONE);
             status_nilai = getResources().getString(R.string.modal_status_gagal);
-        }else if(totalskor>=20 && totalskor <= 30){
+        }else if(skoring>=20 && skoring <= 30){
             gagal_hasil.setVisibility(View.GONE);
             bintang_pertama_hasil.playAnimation();
            status_nilai = getResources().getString(R.string.modal_status_nilai_rendah);
-        }else if(totalskor>=40 && totalskor <= 80){
+        }else if(skoring>=40 && skoring <= 80){
             gagal_hasil.setVisibility(View.GONE);
             bintang_pertama_hasil.playAnimation();
             bintang_kedua_hasil.playAnimation();
@@ -413,7 +424,7 @@ public class PermainanActivity extends AppCompatActivity implements View.OnClick
         });
 
 
-        proto_permainan.simpanHasil(user.getDisplayName(),String.valueOf(totalskor),String.valueOf(totaljawabanbenar));
+        proto_permainan.simpanHasil(user.getDisplayName(),String.valueOf(totalskor),String.valueOf(totaljawabanbenar),String.valueOf(totalsoal));
     }
 
 
